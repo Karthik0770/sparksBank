@@ -15,9 +15,7 @@ app.use('/users',userRoutes)
 const url = 'mongodb+srv://karthik:iyer1234@sparksmern.glakp.mongodb.net/sparks-mern?retryWrites=true&w=majority'
 mongoose.connect(url,{
     useNewUrlParser:true,
-    useUnifiedTopology: true,
-    useCreateIndex:true,
-    useFindAndModify:false 
+    useUnifiedTopology: true
 })
 
 const con = mongoose.connection

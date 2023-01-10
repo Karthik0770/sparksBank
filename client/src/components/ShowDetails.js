@@ -45,7 +45,7 @@ export class ShowDetails extends Component {
                     <div className='card-body'>
                         <h5>Email : {email}</h5>
                         <h5>Account Number : {pin}</h5>
-                        <h5>Balance : &#8377; {balance}</h5>
+                        <h5>balance : &#8377; {balance}</h5>
                     </div>
                     <div className='card-footer'>
                         <Button variant="contained" size='large' color="primary" onClick={()=>this.handleClick(acc_id)}><i className="fa fa-money"></i>&nbsp;Transfer Money</Button>
