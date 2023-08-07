@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from '@material-ui/core'
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 export class Invoice extends Component {
 
@@ -16,13 +17,13 @@ export class Invoice extends Component {
     }
 
     async componentWillMount(){
-        await fetch('/users/'+this.state.pa_id)
+        await fetch(`${BASE_URL}/users/`+this.state.pa_id)
         .then(res=>res.json())
         .then(payee=>this.setState({
             payee
         }))
 
-        await fetch('/users/'+this.state.tr_id)
+        await fetch(`${BASE_URL}/users/`+this.state.tr_id)
         .then(res=>res.json())
         .then(transfer=>this.setState({
             transfer

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import './css/home.css'
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 export class Transfer extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ export class Transfer extends Component {
 
     componentDidMount(){
         const {state} = this.props.location
-        fetch('/users')
+        fetch(`${BASE_URL}/users`)
         .then(res => res.json())
         .then(users => {
             let u=[]
@@ -37,13 +38,13 @@ export class Transfer extends Component {
     handleSubmit=async (event)=>{
         event.preventDefault()
 
-        await fetch(`/users/${this.state.payee}`)
+        await fetch(`${BASE_URL}/users/${this.state.payee}`)
             .then(res => res.json())
             .then(user => this.setState({
                 pa_bal:user.balance
             }))
 
-            await fetch(`/users/${this.state.transfer}`)
+            await fetch(`${BASE_URL}/users/${this.state.transfer}`)
             .then(res => res.json())
             .then(user => this.setState({
                 tr_bal:user.balance
@@ -52,16 +53,14 @@ export class Transfer extends Component {
         if(parseInt(this.state.amount)>parseInt(this.state.pa_bal)){
             alert("Your balance not sufficient to continue the transaction !!")
         }else{
-            await fetch('/users/'+this.state.payee,{
+            await fetch(`${BASE_URL}/users/`+this.state.payee,{
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body:JSON.stringify({
                     balance :this.state.pa_bal - this.state.amount
                 })
-            }).then(res => res.json())
-            .then(alert("balance updated"))
-
-            await fetch('/users/'+this.state.transfer,{
+            })
+            await fetch(`${BASE_URL}/users/`+this.state.transfer,{
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body:JSON.stringify({

@@ -4,7 +4,7 @@ const app = express();
 const dotenv = require('dotenv')
 const cors = require('cors')
 app.use(express.json())
-dotenv.config({path:'./config.env'})
+dotenv.config({path:'.env'})
 
 const PORT = process.env.PORT || 4000
 
@@ -12,7 +12,7 @@ const userRoutes =require('./routes/users')
 app.use(cors())
 app.use('/users',userRoutes)
 
-const url = 'mongodb+srv://karthik:iyer1234@sparksmern.glakp.mongodb.net/sparks-mern?retryWrites=true&w=majority'
+const url = 'mongodb+srv://karthik:iyer1234@sparksmern.glakp.mongodb.net/?retryWrites=true&w=majority'
 mongoose.connect(url,{
     useNewUrlParser:true,
     useUnifiedTopology: true
@@ -33,5 +33,5 @@ if(process.env.NODE_ENV === "production"){
 }
 
 app.listen(PORT,()=>{
-    console.log('Server Started')
+    console.log(`Server Started at ${PORT}`)
 })

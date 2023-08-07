@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
 import { Button } from '@material-ui/core'
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 export class ShowDetails extends Component {
 
@@ -18,7 +19,7 @@ export class ShowDetails extends Component {
 
     componentDidMount(){
         const {state} = this.props.location
-        fetch(`/users/${state}`)
+        fetch(`${BASE_URL}/users/${state}`)
         .then(res => res.json())
         .then(user => this.setState({
             acc_id:state,
