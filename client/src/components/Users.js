@@ -17,6 +17,7 @@ export class Users extends Component {
 
     componentDidMount(){
         fetch(`${BASE_URL}/users/`).then(res=> res.json())
+        // fetch(`localhost:4000/users/`).then(res=> res.json())
         .then(users=>{
             this.setState({users})
             console.log(users)
